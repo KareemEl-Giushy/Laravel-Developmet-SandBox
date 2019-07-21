@@ -10,13 +10,21 @@ use App\classes;
 class StudentController extends Controller
 {
     public function index() {
-        $students = Students::all()->toArray();
+        // $students = Students::all()->toArray();
         $info = DB::table('classes')
                 ->join('students','students.class_id', '=', 'classes.id')
-                ->select('classes.className', 'students.name', 'students.email')
+                ->select('classes.className', 'students.name', 'students.email', 'students.degree')
                 ->get()->toArray();
-
-        return view('StudentsDash')->with('students', $info);
+        $counter = DB::table('students')->count();
+        $sum = 0;
+        // return DB::table('students')->select('students.degree')->get()[0]->degree; 
+        for ($i = 0;$i < $counter;$i++) {
+            $deg = DB::table('students')->select('students.degree')->get()[$i]->degree;
+            $sum += $deg;
+        }
+        
+        
+        return view('StudentsDash')->with('students', $info)->withAverage($sum/$counter);
     }
     public function create() {
         $classes = classes::all()->toArray();
@@ -27,6 +35,7 @@ class StudentController extends Controller
         $student = new Students();
         $student->name = $request->input('name');
         $student->email = $request->input('email');
+        $student->degree = $request->input('degree');
         $student->class_id = $request->input('classes');
         $student->save();
 

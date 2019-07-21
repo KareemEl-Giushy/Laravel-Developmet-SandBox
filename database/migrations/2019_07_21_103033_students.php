@@ -17,6 +17,7 @@ class Students extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->float('degree');
             $table->unsignedBigInteger('class_id');
             $table->foreign('class_id')->references('id')->on('classes');
             $table->timestamps();

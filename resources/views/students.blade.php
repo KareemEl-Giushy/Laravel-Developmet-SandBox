@@ -11,8 +11,10 @@
                     <form action='/store' method='post'>
                         <label for="name">Name:-</label>
                         <input type="text" name='name'>
-                        <label for="email">Email:-</label>
+                        <label for="email">E-mail:-</label>
                         <input type="email" name='email'>
+                        <label for="degree">Degree:-</label>
+                        <input type="number" name='degree'>
                         <label for="classes">Class:-</label>
                         <select name="classes">
                         @foreach ($classes as $class)
