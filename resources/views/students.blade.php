@@ -8,7 +8,7 @@
                 <div class="card-header">Add Student <a href="../student" class='float-right'>Go To Dashbord</a></div>
 
                 <div class="card-body">
-                    <form action='/store' method='post'>
+                    <form action="{{ url('student') }}" method='post'>
                         <label for="name">Name:-</label>
                         <input type="text" name='name'>
                         <label for="email">E-mail:-</label>

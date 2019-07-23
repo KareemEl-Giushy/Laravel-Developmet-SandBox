@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource('/student', 'StudentController')->middleWare('auth');
-Route::post('/store', 'StudentController@store');
+// Route::post('student/store', 'StudentController@store');
 // Route::POST('store', 'StudentController@store');
 
 Auth::routes();

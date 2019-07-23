@@ -31,13 +31,11 @@ class StudentController extends Controller
         return view('students')->with('classes', $classes);
     }
     public function store(Request $request) {
+        $input = $request->all();
         // dd($request['name']);
         $student = new Students();
-        $student->name = $request->input('name');
-        $student->email = $request->input('email');
-        $student->degree = $request->input('degree');
-        $student->class_id = $request->input('classes');
-        $student->save();
+        $student->create($input);
+        $student->class()->create();
 
         return redirect('student');
     }
